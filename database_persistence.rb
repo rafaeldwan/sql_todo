@@ -5,7 +5,7 @@ class DatabasePersistence
   
   def initialize(logger)
     @db = if Sinatra::Base.production?
-            pg.connect(ENV['DATABASE_URL'])
+            PG.connect(ENV['DATABASE_URL'])
           else
             PG.connect(dbname: "todos")
           end
