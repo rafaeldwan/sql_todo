@@ -4,12 +4,11 @@ class DatabasePersistence
   attr_accessor :error, :success
   
   def initialize(logger)
-    @db = PG.connect(dbname: 'todos')
-      if Sinatra::Base.production?
-        pg.connect(ENV['DATABASE_URL'])
-      else
-        PG.connect(dbname: "todos")
-      end
+    @db = if Sinatra::Base.production?
+            pg.connect(ENV['DATABASE_URL'])
+          else
+            PG.connect(dbname: "todos")
+          end
     @logger = logger
   end
   
