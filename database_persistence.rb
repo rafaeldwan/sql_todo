@@ -9,6 +9,7 @@ class DatabasePersistence
         pg.connect(ENV['DATABASE_URL'])
       else
         PG.connect(dbname: "todos")
+      end
     @logger = logger
   end
   
